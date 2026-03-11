@@ -1,11 +1,14 @@
 import { Container, Row, Col } from "react-bootstrap";
+import NavBar from "./components/NavBar";
 
 export default function App() {
   return (
     <Container fluid>
       {/* Row 1: Nav (full width on all screens) */}
       <Row>
-        <Col style={{ background: "coral" }}>Nav</Col>
+        <Col>
+          <NavBar />
+        </Col>
       </Row>
 
       {/* Row 2: Aside + Main (Aside hidden on small screens) */}
