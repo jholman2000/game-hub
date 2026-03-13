@@ -24,7 +24,7 @@ export default function App() {
         </Col>
 
         {/* Main */}
-        <Col lg={9}>
+        <Col className="p-3" lg={9}>
           <GameGrid />
         </Col>
       </Row>
