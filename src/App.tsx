@@ -1,6 +1,6 @@
 import { Container, Row, Col } from "react-bootstrap";
 import NavBar from "./components/NavBar";
-import MyButton from "./components/MyButton";
+import GameGrid from "./components/GameGrid";
 
 export default function App() {
   return (
@@ -24,17 +24,8 @@ export default function App() {
         </Col>
 
         {/* Main */}
-        <Col lg={9} style={{ background: "dodgerblue" }}>
-          <MyButton
-            label="Save"
-            variant="success"
-            size="lg"
-            onClick={() => {
-              alert("Save clicked!");
-            }}
-          />
-
-          <MyButton label="Delete" variant="danger" />
+        <Col lg={9}>
+          <GameGrid />
         </Col>
       </Row>
     </Container>
