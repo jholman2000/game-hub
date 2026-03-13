@@ -1,7 +1,6 @@
 import useGames from "../../hooks/useGames";
-
 import { Alert, Col, Container, Row } from "react-bootstrap";
-import GameCard from "../GameCard/GameCard";
+import GameCard from "../GameCard";
 
 const GameGrid = () => {
   const { games, loading, error } = useGames();

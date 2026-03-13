@@ -16,6 +16,7 @@ export default function App() {
       <Row>
         {/* Aside (hidden below lg) */}
         <Col
+          md={4}
           lg={3}
           className="d-none d-lg-block"
           style={{ background: "gold", paddingLeft: 20, paddingRight: 20 }}
@@ -24,7 +25,7 @@ export default function App() {
         </Col>
 
         {/* Main */}
-        <Col className="p-3" lg={9}>
+        <Col className="p-3" md={8} lg={9}>
           <GameGrid />
         </Col>
       </Row>
