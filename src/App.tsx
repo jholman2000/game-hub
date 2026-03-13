@@ -1,12 +1,13 @@
 import { Container, Row, Col } from "react-bootstrap";
 import NavBar from "./components/NavBar";
+import MyButton from "./components/MyButton";
 
 export default function App() {
   return (
     <Container fluid>
       {/* Row 1: Nav (full width on all screens) */}
       <Row>
-        <Col>
+        <Col className="p-0">
           <NavBar />
         </Col>
       </Row>
@@ -24,7 +25,16 @@ export default function App() {
 
         {/* Main */}
         <Col lg={9} style={{ background: "dodgerblue" }}>
-          Main
+          <MyButton
+            label="Save"
+            variant="success"
+            size="lg"
+            onClick={() => {
+              alert("Save clicked!");
+            }}
+          />
+
+          <MyButton label="Delete" variant="danger" />
         </Col>
       </Row>
     </Container>
