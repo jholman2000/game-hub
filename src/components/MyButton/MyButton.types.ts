@@ -7,7 +7,5 @@ import { ButtonProps } from "react-bootstrap/Button";
 
 export interface MyButtonProps extends ButtonProps {
   label: string;
-
-  /** Optional callback for parent */
-  onClick?: () => void;
+  // onClick already exists in ButtonProps, no need to redeclare
 }

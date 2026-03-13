@@ -11,21 +11,11 @@ do so without having to modify the MyButton component itself. The ...rest syntax
 the remaining props that are not explicitly destructured (like label and onClick) and passes 
 them down to the Button component. */
 
-const MyButton: React.FC<MyButtonProps> = ({
-  label,
-  onClick,
-  className,
-  ...rest
-}) => {
-  const handleClick = () => {
-    onClick?.();
-  };
-
+const MyButton: React.FC<MyButtonProps> = ({ label, className, ...rest }) => {
   return (
     <Button
       {...rest}
       className={`${styles.myButton} ${className ?? ""}`}
-      onClick={handleClick}
       data-testid="my-button"
     >
       {label}
