@@ -1,4 +1,4 @@
-import { Platform } from "../GameGrid/GameGrid.types";
+import { Platform } from "../GameCard/GameCard.types";
 
 export interface PlatformIconListProps {
   platforms: { platform: Platform }[];

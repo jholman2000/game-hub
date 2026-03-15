@@ -1,0 +1,10 @@
+/* Custom styles for the application */
+.btn-warning-dark,
+.bg-warning-dark {
+  background-color: #d4a017 !important; /* darker yellow */
+  color: #000 !important; /* black text */
+}
+
+.btn-warning-dark:hover {
+  background-color: #b88912 !important;
+}
