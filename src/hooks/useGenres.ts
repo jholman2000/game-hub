@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 import axiosClient from "../services/axiosClient";
-/* import GameGrid.types for type definitions related to the GameGrid component. This is a common 
+/* import GenreList.types for type definitions related to the GenreList component. This is a common 
    practice in TypeScript projects to keep type definitions in a separate file for better 
-   organization and maintainability. By importing GameGrid.types, you can use the defined types 
-   for props, state, or any other relevant data structures within the GameGrid component, 
+   organization and maintainability. By importing GenreList.types, you can use the defined types 
+   for props, state, or any other relevant data structures within the GenreList component, 
    ensuring type safety and improving code readability. 
 */
-import { Game, GameResponse } from "../components/GameCard/GameCard.types";
 import { CanceledError } from "axios";
+import { Genre, GenresResponse } from "../components/GenreList/GenreList.types";
 
-const useGames = () => {
-  const [games, setGames] = useState<Game[]>([]);
+const useGenres = () => {
+  const [genres, setGenres] = useState<Genre[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>("");
 
@@ -19,11 +19,11 @@ const useGames = () => {
 
     setLoading(true);
     axiosClient
-      .get<GameResponse>("/games", {
+      .get<GenresResponse>("/genres", {
         signal: controller.signal,
       })
       .then((response) => {
-        setGames(response.data.results);
+        setGenres(response.data.results);
         setLoading(false);
       })
       .catch((error) => {
@@ -40,7 +40,7 @@ const useGames = () => {
     };
   }, []);
 
-  return { games, loading, error };
+  return { genres, loading, error };
 };
 
-export default useGames;
+export default useGenres;
