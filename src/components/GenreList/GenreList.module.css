@@ -1,0 +1,17 @@
+.no-underline {
+  text-decoration: none !important;
+  color: white !important; /* default text color */
+  font-weight: normal;
+}
+
+.no-underline:hover {
+  text-decoration: none !important;
+  color: white !important; /* keep white on hover */
+  font-weight: bold; /* bold on hover */
+}
+
+.no-underline:focus,
+.no-underline:active {
+  text-decoration: none !important;
+  color: white !important;
+}

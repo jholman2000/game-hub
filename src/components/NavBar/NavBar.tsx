@@ -1,6 +1,5 @@
 import { Nav, Navbar, NavDropdown, Container, Image } from "react-bootstrap";
-
-import logo from "../assets/logo.webp";
+import logo from "../../assets/logo.webp";
 
 const NavBar = () => {
   return (
