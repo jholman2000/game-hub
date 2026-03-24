@@ -8,7 +8,7 @@
 */
 import { useEffect, useState } from "react";
 import axiosClient from "../services/axiosClient";
-import { CanceledError } from "axios";
+import { AxiosRequestConfig, CanceledError } from "axios";
 
 interface UseApiDataResponse<T> {
   count: number;
@@ -19,44 +19,52 @@ interface UseApiDataResponse<T> {
   error: string | null;
 }
 
-const useApiData = <T>(endpoint: string) => {
+const useApiData = <T>(
+  endpoint: string,
+  requestConfig?: AxiosRequestConfig,
+  deps?: any[],
+) => {
   const [apiResponse, setApiResponse] = useState<UseApiDataResponse<T> | null>(
     null,
   );
   const [apiData, setApiData] = useState<T[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>("");
 
-  useEffect(() => {
-    const controller = new AbortController();
+  useEffect(
+    () => {
+      const controller = new AbortController();
 
-    setLoading(true);
-    axiosClient
-      .get<UseApiDataResponse<T>>(endpoint, {
-        signal: controller.signal,
-      })
-      .then((response) => {
-        setApiData(response.data.results);
-        setApiResponse(response.data);
-        console.log("apiResponse:", response.data); // Debugging log
-        console.log("apiData:", response.data.results); // Debugging log
-        setLoading(false);
-      })
-      .catch((error) => {
-        if (error instanceof CanceledError) return;
-        setError(error instanceof Error ? error.message : "Unknown error");
-        setLoading(false);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
+      setLoading(true);
+      axiosClient
+        .get<UseApiDataResponse<T>>(endpoint, {
+          signal: controller.signal,
+          ...requestConfig,
+        })
+        .then((response) => {
+          setApiData(response.data.results);
+          setApiResponse(response.data);
+          console.log("apiResponse:", response.data); // Debugging log
+          console.log("apiData:", response.data.results); // Debugging log
+          setLoading(false);
+        })
+        .catch((error) => {
+          if (error instanceof CanceledError) return;
+          setError(error instanceof Error ? error.message : "Unknown error");
+          setLoading(false);
+        })
+        .finally(() => {
+          setLoading(false);
+        });
 
-    return () => {
-      controller.abort();
-    };
-  }, []);
+      return () => {
+        controller.abort();
+      };
+    },
+    deps ? [...deps] : [],
+  ); // Spread deps to ensure useEffect runs when any of the dependencies change
 
-  return { apiData, apiResponse, loading, error };
+  return { apiData, apiResponse, isLoading, error };
 };
 
 export default useApiData;
