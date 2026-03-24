@@ -1,6 +1,7 @@
 export interface GenreListProps {
   // Define any props that GenreList might need here
   onSelectGenre?: (genre: Genre) => void; // Example prop for handling genre selection
+  selectedGenre?: Genre | null; // Example prop for the currently selected genre
 }
 
 export interface GenresResponse {

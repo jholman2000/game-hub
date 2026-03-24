@@ -33,7 +33,10 @@ export default function App() {
           genre is currently selected and potentially pass that information down
           to other components like GameGrid to filter the displayed games based
           on the selected genre. */}
-          <GenreList onSelectGenre={setSelectedGenre} />
+          <GenreList
+            onSelectGenre={setSelectedGenre}
+            selectedGenre={selectedGenre}
+          />
         </Col>
 
         {/* Main */}

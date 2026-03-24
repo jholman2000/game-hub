@@ -12,7 +12,7 @@ import styles from "./GenreList.module.css";
 import useGenres from "../../hooks/useGenres";
 import { GenreListProps } from "./GenreList.types";
 
-const GenreList = ({ onSelectGenre }: GenreListProps) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
   const { apiData, isLoading } = useGenres();
 
   if (isLoading)
@@ -23,35 +23,35 @@ const GenreList = ({ onSelectGenre }: GenreListProps) => {
     );
 
   return (
-    <>
-      <ListGroup variant="flush" className="bg-dark text-white">
-        {apiData.map((genre) => (
+    <ListGroup variant="flush" className="bg-dark">
+      {apiData.map((genre) => {
+        const isSelected = selectedGenre?.id === genre.id;
+
+        return (
           <ListGroup.Item
             key={genre.id}
-            className="p-0 border-0 bg-dark text-white"
+            action
+            onClick={() => onSelectGenre?.(genre)}
+            className={`d-flex align-items-center gap-2 border-0 ${
+              isSelected
+                ? "bg-primary text-white"
+                : "bg-dark text-white fw-bold"
+            }`}
+            style={{ cursor: "pointer" }}
           >
-            <Button
-              variant="link"
-              className={
-                styles["no-underline"] +
-                " w-100 text-start d-flex align-items-center gap-2 px-2 py-2"
-              }
-              onClick={() => onSelectGenre?.(genre)}
-            >
-              <Image
-                src={genre.image_background}
-                width={48}
-                height={48}
-                rounded
-                style={{ objectFit: "cover" }}
-              />
+            <Image
+              src={genre.image_background}
+              width={48}
+              height={48}
+              rounded
+              style={{ objectFit: "cover" }}
+            />
 
-              {genre.name}
-            </Button>
+            {genre.name}
           </ListGroup.Item>
-        ))}
-      </ListGroup>
-    </>
+        );
+      })}
+    </ListGroup>
   );
 };
 
