@@ -1,0 +1,23 @@
+import React from "react";
+import { {{bootstrap}}Props } from "react-bootstrap";
+import { {{pascalCase name}}Props } from "./{{pascalCase name}}.types";
+import styles from "./{{pascalCase name}}.module.css";
+
+const {{pascalCase name}}: React.FC<{{pascalCase name}}Props> = ({
+  className,
+  ...rest
+}) => {
+  const Component = "{{bootstrap}}" as any; // allow dynamic component type
+
+  return (
+    <Component
+      {...rest}
+      className={styles.{{camelCase name}} + " " + (className ?? "")}
+      data-testid="{{kebabCase name}}"
+    >
+      {{pascalCase name}} Content
+    </Component>
+  );
+};
+
+export default {{pascalCase name}};
