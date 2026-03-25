@@ -4,6 +4,7 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList/GenreList";
 import { useState } from "react";
 import { Genre } from "./components/GenreList/GenreList.types";
+import PlatformSelector from "./components/PlatformSelector";
 
 export default function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
@@ -40,7 +41,8 @@ export default function App() {
         </Col>
 
         {/* Main */}
-        <Col className="p-3" sm={10} md={9} lg={8} xl={10}>
+        <Col className="bg-dark p-3" sm={10} md={9} lg={8} xl={10}>
+          <PlatformSelector />
           <GameGrid selectedGenre={selectedGenre} />
         </Col>
       </Row>
