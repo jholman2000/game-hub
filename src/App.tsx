@@ -4,10 +4,13 @@ import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList/GenreList";
 import { useState } from "react";
 import { Genre } from "./components/GenreList/GenreList.types";
-import PlatformSelector from "./components/PlatformSelector";
+import PlatformSelector, { Platform } from "./components/PlatformSelector";
 
 export default function App() {
   const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
+  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
+    null,
+  );
 
   return (
     <Container fluid>
@@ -42,8 +45,14 @@ export default function App() {
 
         {/* Main */}
         <Col className="bg-dark p-3" sm={10} md={9} lg={8} xl={10}>
-          <PlatformSelector />
-          <GameGrid selectedGenre={selectedGenre} />
+          <PlatformSelector
+            onSelectPlatform={setSelectedPlatform}
+            selectedPlatform={selectedPlatform}
+          />
+          <GameGrid
+            selectedPlatform={selectedPlatform}
+            selectedGenre={selectedGenre}
+          />
         </Col>
       </Row>
     </Container>
