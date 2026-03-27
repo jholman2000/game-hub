@@ -6,11 +6,18 @@ import { useState } from "react";
 import { Genre } from "./components/GenreList/GenreList.types";
 import PlatformSelector, { Platform } from "./components/PlatformSelector";
 
+export interface GameQuery {
+  // Define any props that App might need here
+  genre: Genre | null; // Example prop for passing a selected genre to the App component
+  platform: Platform | null; // Example prop for passing a selected platform to the App component
+}
+
 export default function App() {
-  const [selectedGenre, setSelectedGenre] = useState<Genre | null>(null);
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform | null>(
-    null,
-  );
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+
+  const setSelectedGenre = (genre: Genre | null) => {
+    setGameQuery((prev) => ({ ...prev, genre }));
+  };
 
   return (
     <Container fluid>
@@ -39,20 +46,19 @@ export default function App() {
           on the selected genre. */}
           <GenreList
             onSelectGenre={setSelectedGenre}
-            selectedGenre={selectedGenre}
+            selectedGenre={gameQuery.genre}
           />
         </Col>
 
         {/* Main */}
         <Col className="bg-dark p-3" sm={10} md={9} lg={8} xl={10}>
           <PlatformSelector
-            onSelectPlatform={setSelectedPlatform}
-            selectedPlatform={selectedPlatform}
+            onSelectPlatform={(platform) =>
+              setGameQuery((prev) => ({ ...prev, platform }))
+            }
+            selectedPlatform={gameQuery.platform}
           />
-          <GameGrid
-            selectedPlatform={selectedPlatform}
-            selectedGenre={selectedGenre}
-          />
+          <GameGrid gameQuery={gameQuery} />
         </Col>
       </Row>
     </Container>

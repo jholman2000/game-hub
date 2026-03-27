@@ -59,16 +59,8 @@ const AnimatedSearchingIcon = ({ size = 120 }: { size?: number }) => (
   </svg>
 );
 
-const GameGrid = ({
-  selectedGenre = null,
-  selectedPlatform = null,
-}: GameGridProps) => {
-  const { apiData, isLoading, error } = useGames(
-    selectedGenre,
-    selectedPlatform,
-  );
-
-  // Full-screen animated loading
+const GameGrid = ({ gameQuery }: GameGridProps) => {
+  const { apiData, isLoading, error } = useGames(gameQuery);
   if (isLoading) {
     return (
       <Container

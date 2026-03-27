@@ -1,20 +1,18 @@
 import { Genre } from "../components/GenreList/GenreList.types";
 import { Game, Platform } from "../components/GameCard/GameCard.types";
 import useApiData from "./useApiData";
+import { GameQuery } from "@/App";
 
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null,
-) => {
+const useGames = (gameQuery: GameQuery) => {
   return useApiData<Game>(
     "/games",
     {
       params: {
-        genres: selectedGenre?.id,
-        parent_platforms: selectedPlatform?.id,
+        genres: gameQuery.genre?.id,
+        parent_platforms: gameQuery.platform?.id,
       },
     },
-    [selectedGenre?.id, selectedPlatform?.id],
+    [gameQuery],
   );
 };
 
