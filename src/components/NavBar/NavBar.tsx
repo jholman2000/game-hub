@@ -17,7 +17,7 @@ const NavBar = () => {
 
         {/* Navbar.Collapse purpose is to contain the navigation links for mobile view */}
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
+          <Navbar.Text className="me-3">
             Signed in as: <a href="#login">Jeff Holman</a>
           </Navbar.Text>
         </Navbar.Collapse>

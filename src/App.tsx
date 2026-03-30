@@ -5,6 +5,7 @@ import GenreList from "./components/GenreList/GenreList";
 import { useState } from "react";
 import { Genre } from "./components/GenreList/GenreList.types";
 import PlatformSelector, { Platform } from "./components/PlatformSelector";
+import SortSelector from "./components/SortSelector";
 
 export interface GameQuery {
   // Define any props that App might need here
@@ -52,12 +53,15 @@ export default function App() {
 
         {/* Main */}
         <Col className="bg-dark p-3" sm={10} md={9} lg={8} xl={10}>
-          <PlatformSelector
-            onSelectPlatform={(platform) =>
-              setGameQuery((prev) => ({ ...prev, platform }))
-            }
-            selectedPlatform={gameQuery.platform}
-          />
+          <div className="d-flex ms-2 mb-3 gap-2">
+            <PlatformSelector
+              onSelectPlatform={(platform) =>
+                setGameQuery((prev) => ({ ...prev, platform }))
+              }
+              selectedPlatform={gameQuery.platform}
+            />
+            <SortSelector />
+          </div>
           <GameGrid gameQuery={gameQuery} />
         </Col>
       </Row>
