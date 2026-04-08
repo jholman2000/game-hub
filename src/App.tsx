@@ -11,6 +11,7 @@ export interface GameQuery {
   // Define any props that App might need here
   genre: Genre | null; // Example prop for passing a selected genre to the App component
   platform: Platform | null; // Example prop for passing a selected platform to the App component
+  sortOrder: string; // Example prop for passing a selected sort order to the App component
 }
 
 export default function App() {
@@ -60,7 +61,12 @@ export default function App() {
               }
               selectedPlatform={gameQuery.platform}
             />
-            <SortSelector />
+            <SortSelector
+              currentSort={gameQuery.sortOrder}
+              onSelectSort={(sortOrder) =>
+                setGameQuery({ ...gameQuery, sortOrder })
+              }
+            />
           </div>
           <GameGrid gameQuery={gameQuery} />
         </Col>
