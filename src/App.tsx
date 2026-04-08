@@ -53,7 +53,7 @@ export default function App() {
         </Col>
 
         {/* Main */}
-        <Col className="bg-dark p-3" sm={10} md={9} lg={8} xl={10}>
+        <Col className="bg-dark p-3" sm={10} md={9} lg={10} xl={10}>
           <div className="d-flex ms-2 mb-3 gap-2">
             <PlatformSelector
               onSelectPlatform={(platform) =>

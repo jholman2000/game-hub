@@ -1,5 +1,6 @@
 import { Nav, Navbar, NavDropdown, Container, Image } from "react-bootstrap";
 import logo from "../../assets/logo.webp";
+import SearchInput from "../SearchInput";
 
 const NavBar = () => {
   return (
@@ -10,14 +11,12 @@ const NavBar = () => {
           <Image src={logo} width={60} height={60} rounded />
         </Navbar.Brand>
 
-        <Navbar.Text>NavBar</Navbar.Text>
-
         {/* Toggle for mobile view */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-
+        <SearchInput />
         {/* Navbar.Collapse purpose is to contain the navigation links for mobile view */}
         <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text className="me-3">
+          <Navbar.Text className="me-3 text-nowrap">
             Signed in as: <a href="#login">Jeff Holman</a>
           </Navbar.Text>
         </Navbar.Collapse>
