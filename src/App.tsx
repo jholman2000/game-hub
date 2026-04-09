@@ -12,6 +12,7 @@ export interface GameQuery {
   genre: Genre | null; // Example prop for passing a selected genre to the App component
   platform: Platform | null; // Example prop for passing a selected platform to the App component
   sortOrder: string; // Example prop for passing a selected sort order to the App component
+  searchText: string;
 }
 
 export default function App() {
@@ -26,7 +27,10 @@ export default function App() {
       {/* Row 1: Nav (full width on all screens) */}
       <Row>
         <Col className="p-0">
-          <NavBar />
+          <NavBar onSearch={(searchText) => {
+              console.log("Search:", searchText);
+              setGameQuery((prev) => ({ ...prev, searchText }));
+            }} />
         </Col>
       </Row>
 

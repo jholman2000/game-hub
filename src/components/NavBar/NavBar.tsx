@@ -1,8 +1,9 @@
-import { Nav, Navbar, NavDropdown, Container, Image } from "react-bootstrap";
+import { Navbar, Container, Image } from "react-bootstrap";
 import logo from "../../assets/logo.webp";
 import SearchInput from "../SearchInput";
+import { NavBarProps } from "./NavBar.types";
 
-const NavBar = () => {
+const NavBar = ({ onSearch }: NavBarProps) => {
   return (
     <Navbar expand="lg" data-bs-theme="dark" className="bg-body-tertiary p-0 ">
       <Container fluid className="d-flex align-items-center gap-3 p-0 g-0">
@@ -13,7 +14,7 @@ const NavBar = () => {
 
         {/* Toggle for mobile view */}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <SearchInput />
+        <SearchInput onSearch={onSearch} />
         {/* Navbar.Collapse purpose is to contain the navigation links for mobile view */}
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text className="me-3 text-nowrap">
