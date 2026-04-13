@@ -1,8 +1,6 @@
 import React from "react";
-import { ButtonGroup, Dropdown, DropdownProps } from "react-bootstrap";
+import { ButtonGroup, Dropdown } from "react-bootstrap";
 import { SortSelectorProps } from "./SortSelector.types";
-import styles from "./SortSelector.module.css";
-//import useSorts from "../../hooks/useSorts";
 
 const SortSelector: React.FC<SortSelectorProps> = ({
   className,
@@ -41,7 +39,6 @@ const SortSelector: React.FC<SortSelectorProps> = ({
               }
             }}
           >
-            {sort.value == selectedSort?.value}
             {sort.label}
           </Dropdown.Item>
         ))}

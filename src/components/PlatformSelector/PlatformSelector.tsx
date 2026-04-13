@@ -1,14 +1,11 @@
 import React from "react";
-import { ButtonGroup, Dropdown, DropdownProps } from "react-bootstrap";
+import { ButtonGroup, Dropdown } from "react-bootstrap";
 import { PlatformSelectorProps } from "./PlatformSelector.types";
-import styles from "./PlatformSelector.module.css";
 import usePlatforms from "../../hooks/usePlatforms";
 
 const PlatformSelector: React.FC<PlatformSelectorProps> = ({
   onSelectPlatform,
   selectedPlatform,
-  className,
-  ...rest
 }) => {
   const { apiData, isLoading, error } = usePlatforms();
   if (error) return <div>Error: {error}</div>;
@@ -25,7 +22,6 @@ const PlatformSelector: React.FC<PlatformSelectorProps> = ({
         {apiData.map((platform) => (
           <Dropdown.Item
             key={platform.id}
-            href={`#/platform/${platform.slug}`}
             onClick={() => onSelectPlatform?.(platform)}
           >
             {platform.name}
