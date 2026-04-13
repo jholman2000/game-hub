@@ -1,6 +1,5 @@
 import React from "react";
 import { SearchInputProps } from "./SearchInput.types";
-import styles from "./SearchInput.module.css";
 import { Form, InputGroup } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
 

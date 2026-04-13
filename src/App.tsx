@@ -16,10 +16,14 @@ export interface GameQuery {
 }
 
 export default function App() {
-  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+  const [gameQuery, setGameQuery] = useState<GameQuery>({ genre: null, platform: null, sortOrder: "", searchText: "" });
 
   const setSelectedGenre = (genre: Genre | null) => {
     setGameQuery((prev) => ({ ...prev, genre }));
+  };
+
+  const handleSearch = (searchText: string) => {
+    setGameQuery((prev) => ({ ...prev, searchText }));
   };
 
   return (
@@ -27,10 +31,7 @@ export default function App() {
       {/* Row 1: Nav (full width on all screens) */}
       <Row>
         <Col className="p-0">
-          <NavBar onSearch={(searchText) => {
-              console.log("Search:", searchText);
-              setGameQuery((prev) => ({ ...prev, searchText }));
-            }} />
+          <NavBar onSearch={handleSearch} />
         </Col>
       </Row>
 

@@ -34,7 +34,7 @@ const PlatformIconList = ({ platforms }: PlatformIconListProps) => {
 
   return (
     <div className="d-flex gap-2">
-      {platforms.map((platform) => {
+      {platforms && platforms.map((platform) => {
         const slug = platform.platform.slug;
         const Icon = iconMap[slug];
 

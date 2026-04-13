@@ -11,7 +11,6 @@ const PlatformSelector: React.FC<PlatformSelectorProps> = ({
   ...rest
 }) => {
   const { apiData, isLoading, error } = usePlatforms();
-  console.log("selectedPlatform:", selectedPlatform);
   if (error) return <div>Error: {error}</div>;
   if (isLoading) return <div>Loading...</div>;
   return (

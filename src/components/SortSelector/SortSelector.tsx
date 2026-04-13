@@ -36,13 +36,12 @@ const SortSelector: React.FC<SortSelectorProps> = ({
             key={sort.value}
             eventKey={sort.value}
             onClick={() => {
-              console.log("Selected sort:", sort.value);
               if (onSelectSort) {
                 onSelectSort(sort.value);
               }
             }}
           >
-            {sort.value == selectedSort?.value && "active"}
+            {sort.value == selectedSort?.value}
             {sort.label}
           </Dropdown.Item>
         ))}

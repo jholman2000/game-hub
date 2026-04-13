@@ -1,5 +1,4 @@
-import { Genre } from "../components/GenreList/GenreList.types";
-import { Game, Platform } from "../components/GameCard/GameCard.types";
+import { Game } from "../components/GameCard/GameCard.types";
 import useApiData from "./useApiData";
 import { GameQuery } from "@/App";
 
@@ -12,6 +11,7 @@ const useGames = (gameQuery: GameQuery) => {
         parent_platforms: gameQuery.platform?.id,
         ordering: gameQuery.sortOrder,
         search: gameQuery.searchText,
+        search_precise: true, // Enable precise search to match the exact search term
       },
     },
     [gameQuery],
