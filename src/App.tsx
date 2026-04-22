@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Genre } from "./components/GenreList/GenreList.types";
 import PlatformSelector, { Platform } from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
+import GameHeading from "./components/GameHeading";
 
 export interface GameQuery {
   // Define any props that App might need here
@@ -16,7 +17,12 @@ export interface GameQuery {
 }
 
 export default function App() {
-  const [gameQuery, setGameQuery] = useState<GameQuery>({ genre: null, platform: null, sortOrder: "", searchText: "" });
+  const [gameQuery, setGameQuery] = useState<GameQuery>({
+    genre: null,
+    platform: null,
+    sortOrder: "",
+    searchText: "",
+  });
 
   const setSelectedGenre = (genre: Genre | null) => {
     setGameQuery((prev) => ({ ...prev, genre }));
@@ -59,6 +65,7 @@ export default function App() {
 
         {/* Main */}
         <Col className="bg-dark p-3" sm={10} md={9} lg={10} xl={10}>
+          <GameHeading gameQuery={gameQuery} />
           <div className="d-flex ms-2 mb-3 gap-2">
             <PlatformSelector
               onSelectPlatform={(platform) =>

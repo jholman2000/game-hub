@@ -18,6 +18,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
     // If Enter key is pressed, call the onSearch prop with the current search term
     if (event.key === "Enter" && onSearch) {
       onSearch(searchTerm);
+      setSearchTerm("");
     }
   };
 
