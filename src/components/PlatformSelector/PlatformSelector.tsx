@@ -19,6 +19,9 @@ const PlatformSelector: React.FC<PlatformSelectorProps> = ({
 
       {/* This is the menu list */}
       <Dropdown.Menu>
+        <Dropdown.Item onClick={() => onSelectPlatform?.(null)}>
+          All Platforms
+        </Dropdown.Item>
         {apiData.map((platform) => (
           <Dropdown.Item
             key={platform.id}
