@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "https://api.rawg.io/api", //import.meta.env.RAWG_API_URL,
+  baseURL: "https://api.rawg.io/api",
   params: {
-    key: "df986ad41b884d66a7a19be9997d0546", //import.meta.env.RAWG_API_KEY,
+    key: import.meta.env.VITE_RAWG_API_KEY,
   },
   timeout: 10000,
 });

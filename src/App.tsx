@@ -7,14 +7,8 @@ import { Genre } from "./components/GenreList/GenreList.types";
 import PlatformSelector, { Platform } from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
 import GameHeading from "./components/GameHeading";
-
-export interface GameQuery {
-  // Define any props that App might need here
-  genre: Genre | null; // Example prop for passing a selected genre to the App component
-  platform: Platform | null; // Example prop for passing a selected platform to the App component
-  sortOrder: string; // Example prop for passing a selected sort order to the App component
-  searchText: string;
-}
+import { GameQuery } from "./types/GameQuery";
+export type { GameQuery } from "./types/GameQuery";
 
 export default function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({
@@ -24,7 +18,7 @@ export default function App() {
     searchText: "",
   });
 
-  const setSelectedGenre = (genre: Genre | null) => {
+  const handleSelectGenre = (genre: Genre | null) => {
     setGameQuery((prev) => ({ ...prev, genre }));
   };
 
@@ -32,52 +26,44 @@ export default function App() {
     setGameQuery((prev) => ({ ...prev, searchText }));
   };
 
+  const handleSelectPlatform = (platform: Platform | null) => {
+    setGameQuery((prev) => ({ ...prev, platform }));
+  };
+
+  const handleSelectSort = (sortOrder: string) => {
+    setGameQuery((prev) => ({ ...prev, sortOrder }));
+  };
+
   return (
     <Container fluid>
-      {/* Row 1: Nav (full width on all screens) */}
       <Row>
         <Col className="p-0">
           <NavBar onSearch={handleSearch} />
         </Col>
       </Row>
-
-      {/* Row 2: Aside + Main (Aside hidden on phones - always show on ≥ 576px) */}
       <Row>
-        {/* Aside (hidden below lg) */}
         <Col
           className="d-none d-sm-block bg-dark text-white"
-          sm={2} // phones (landscape)
-          md={3} // Small tablets, large phones
-          lg={2} // Tablets and small laptops
-          xl={2} // Desktops and large laptops
+          sm={2}
+          md={3}
+          lg={2}
+          xl={2}
         >
-          {/* setSelectedGenre is passed as a prop to GenreList. When a genre is
-          selected in GenreList, it will call setSelectedGenre to update the
-          selectedGenre state in App. This allows App to keep track of which
-          genre is currently selected and potentially pass that information down
-          to other components like GameGrid to filter the displayed games based
-          on the selected genre. */}
           <GenreList
-            onSelectGenre={setSelectedGenre}
+            onSelectGenre={handleSelectGenre}
             selectedGenre={gameQuery.genre}
           />
         </Col>
-
-        {/* Main */}
         <Col className="bg-dark p-3" sm={10} md={9} lg={10} xl={10}>
           <GameHeading gameQuery={gameQuery} />
           <div className="d-flex ms-2 mb-3 gap-2">
             <PlatformSelector
-              onSelectPlatform={(platform) =>
-                setGameQuery((prev) => ({ ...prev, platform }))
-              }
+              onSelectPlatform={handleSelectPlatform}
               selectedPlatform={gameQuery.platform}
             />
             <SortSelector
               currentSort={gameQuery.sortOrder}
-              onSelectSort={(sortOrder) =>
-                setGameQuery({ ...gameQuery, sortOrder })
-              }
+              onSelectSort={handleSelectSort}
             />
           </div>
           <GameGrid gameQuery={gameQuery} />

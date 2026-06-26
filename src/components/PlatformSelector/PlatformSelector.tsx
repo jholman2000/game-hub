@@ -8,16 +8,13 @@ const PlatformSelector: React.FC<PlatformSelectorProps> = ({
   selectedPlatform,
 }) => {
   const { apiData, isLoading, error } = usePlatforms();
-  if (error) return <div>Error: {error}</div>;
-  if (isLoading) return <div>Loading...</div>;
+  if (error) return <p className="text-danger">Failed to load platforms.</p>;
+  if (isLoading) return <p className="text-muted">Loading platforms…</p>;
   return (
     <Dropdown as={ButtonGroup} data-bs-theme="dark">
-      {/* This is the trigger button */}
-      <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+      <Dropdown.Toggle variant="secondary" id="platform-selector-dropdown">
         {selectedPlatform ? selectedPlatform.name : "Select Platform"}
       </Dropdown.Toggle>
-
-      {/* This is the menu list */}
       <Dropdown.Menu>
         <Dropdown.Item onClick={() => onSelectPlatform?.(null)}>
           All Platforms

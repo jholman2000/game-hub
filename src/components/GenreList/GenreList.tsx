@@ -32,10 +32,10 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
             key={genre.id}
             action
             onClick={() => onSelectGenre?.(genre)}
-            className={`d-flex align-items-center gap-2 border-0 ${
+            className={`d-flex align-items-center gap-2 border-0 ${styles["no-underline"]} ${
               isSelected
-                ? "bg-primary text-white"
-                : "bg-dark text-white fw-bold"
+                ? "bg-primary text-white fw-bold"
+                : "bg-dark text-white"
             }`}
             style={{ cursor: "pointer" }}
           >
