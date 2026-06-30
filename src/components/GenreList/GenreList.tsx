@@ -23,35 +23,37 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
     );
 
   return (
-    <ListGroup variant="flush" className="bg-dark">
-      {apiData.map((genre) => {
-        const isSelected = selectedGenre?.id === genre.id;
+    <>
+      <h2 className="text-white">Genres</h2>
+      <ListGroup variant="flush" className="bg-dark">
+        {apiData.map((genre) => {
+          const isSelected = selectedGenre?.id === genre.id;
+          return (
+            <ListGroup.Item
+              key={genre.id}
+              action
+              onClick={() => onSelectGenre?.(genre)}
+              className={`d-flex align-items-center gap-2 border-0 ${styles["no-underline"]} ${
+                isSelected
+                  ? "bg-primary text-white fw-bold"
+                  : "bg-dark text-white"
+              }`}
+              style={{ cursor: "pointer" }}
+            >
+              <Image
+                src={genre.image_background}
+                width={48}
+                height={48}
+                rounded
+                style={{ objectFit: "cover" }}
+              />
 
-        return (
-          <ListGroup.Item
-            key={genre.id}
-            action
-            onClick={() => onSelectGenre?.(genre)}
-            className={`d-flex align-items-center gap-2 border-0 ${styles["no-underline"]} ${
-              isSelected
-                ? "bg-primary text-white fw-bold"
-                : "bg-dark text-white"
-            }`}
-            style={{ cursor: "pointer" }}
-          >
-            <Image
-              src={genre.image_background}
-              width={48}
-              height={48}
-              rounded
-              style={{ objectFit: "cover" }}
-            />
-
-            {genre.name}
-          </ListGroup.Item>
-        );
-      })}
-    </ListGroup>
+              {genre.name}
+            </ListGroup.Item>
+          );
+        })}
+      </ListGroup>
+    </>
   );
 };
 

@@ -10,11 +10,11 @@ const GameCard = ({ game }: GameCardProps) => {
     <Card>
       <Card.Img variant="top" src={game.background_image || noImage} />
       <Card.Body>
-        <Card.Title className={styles.title}>{game.name}</Card.Title>
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between mb-3">
           <PlatformIconList platforms={game.platforms} />
           <CriticScore score={game.metacritic} />
         </div>
+        <Card.Title className={styles.title}>{game.name}</Card.Title>
         <Card.Text>Released: {game.released}</Card.Text>
       </Card.Body>
     </Card>

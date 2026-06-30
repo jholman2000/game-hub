@@ -8,7 +8,7 @@ const GameHeading: React.FC<GameHeadingProps> = ({ gameQuery }) => {
   const { genre, platform } = gameQuery;
   const heading =
     genre || platform
-      ? `${platform ? stripGames(platform.name) : ""} ${genre ? stripGames(genre.name) : ""}  Games`.trim()
+      ? ` ${platform ? stripGames(platform.name) : ""} ${genre ? stripGames(genre.name) : ""}  Games`.trim()
       : "All Games";
   return <h1 className={styles.gameHeading}>{heading}</h1>;
 };
